@@ -1,0 +1,29 @@
+{
+    "name": "vodeo-ecs-package",
+    "version": "0.1.0",
+    "unity": "2020.3",
+    "description": "An ECS framework for use with Unity 3D.",
+    "displayName": "Vodeo ECS",
+    "repository": {
+        "type": "git",
+        "url": "addlater"
+    },
+    "author": "Joachim Despland-Lichtert",
+    "license": "LGPL-3.0-or-later",
+    "keywords": [
+        "unity3d",
+        "ECS",
+        "DOTS"
+    ],
+    "dependencies": {
+        "com.unity.collections": "1.1.0",
+        "com.unity.jobs": "0.11.0-preview.6"
+    },
+    "samples": [
+        {
+            "displayName": "Example",
+            "description": "Demo showing how to use ECS framework",
+            "path": "Samples~/Example"
+        }
+    ]
+}

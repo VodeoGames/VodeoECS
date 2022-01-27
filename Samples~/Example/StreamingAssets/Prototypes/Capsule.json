@@ -1,0 +1,25 @@
+{
+    "TrajectoryComponent": {},
+    "RotationComponent": {
+        "quaternion": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 0.0
+        }
+    },
+    "ObjectRendererComponent": {
+        "objectType": "Capsule"
+    },
+    "RenderLayerFilter": {},
+    "FlyingComponent": {
+        "pitchAxis": 0.0,
+        "yawAxis": 0.0,
+        "rollAxis": 0.0,
+        "throttle": 0.0,
+        "maxSpeed": 200.0,
+        "turnspeed": 300.0,
+        "acceleration":  120.0,
+        "velocity": 0.0
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "TrajectoryComponent": {},
+    "RotationComponent": {
+        "quaternion": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 0.0
+        }
+    },
+    "PathNodeElement": [],
+    "PathComponent": {
+        "invertedSpeed": 0.015,
+        "range": 10000
+    },
+    "ScaleComponent": {
+        "scale": {
+            "x": 3.5,
+            "y": 3.5,
+            "z": 3.5
+        }
+    },
+    "MeshRenderFilter": {
+        "mesh": "Cube"
+    },
+    "MaterialFilter": {
+        "material": "AgentMaterial"
+    },
+    "TravelStateComponent": {}
+}
