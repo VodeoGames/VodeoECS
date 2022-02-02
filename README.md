@@ -1,5 +1,10 @@
 # Vodeo ECS Framework for Unity
+
 Full documentation here: https://github.com/VodeoGames/VodeoECS/wiki
+
+Showcase video:
+
+[![Vodeo ECS](https://user-images.githubusercontent.com/98482522/152241174-b947995b-22aa-4b77-83d8-f2fd4167479a.png)](https://youtu.be/3U-p9YQCnPw "Vodeo ECS")
 
 ## What is this for?
 
@@ -27,9 +32,10 @@ As of this writing Unity is developing its own official ECS framework as part of
 
 1. Create a new Unity project
 
-2. In the Package Manager click on the "+" button then "Add package from git URL" and copy-paste this URL: https://github.com/JoachimDL/VodeoECS/
+2. In the Package Manager click on the "+" button then "Add package from git URL" and copy-paste this URL: https://github.com/VodeoGames/VodeoECS.git
 
 3. If you'd like to check out the sample demonstration (recommended if you're new to the framework!) Open the "Samples" dropdown and import the sample. Then load up the imported scene in your Samples folder!
 
+4. Check out the Wiki for documentation! (https://github.com/VodeoGames/VodeoECS/wiki)
 
 <img align="right" src="https://user-images.githubusercontent.com/65035652/151412845-8d271233-9428-4f19-95f3-fa1cd93e0b69.png">
