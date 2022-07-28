@@ -70,6 +70,7 @@ namespace VodeoECS.Standard
         private List<InterpolateTrajectories> jobs;
 
         private EventListener<ComponentCreationEvent<ObjectRendererComponent>> creationEvents;
+        private EventListener<ComponentDestructionEvent<ObjectRendererComponent>> componentDestructionEvents;
         private EventListener<DestroyEntityEvent> destructionEvents;
         private EventListener<WorldLoadedEvent> loadedEvents;
 
@@ -122,6 +123,7 @@ namespace VodeoECS.Standard
             }
 
             creationEvents = world.Events.GetListener<ComponentCreationEvent<ObjectRendererComponent>>( this );
+            componentDestructionEvents = world.Events.GetListener<ComponentDestructionEvent<ObjectRendererComponent>>( this );
             destructionEvents = world.Events.GetListener<DestroyEntityEvent>( this );
             loadedEvents = world.Events.GetListener<WorldLoadedEvent>( this );
 
@@ -223,6 +225,24 @@ namespace VodeoECS.Standard
                             ParentObject( o, entity, parent.parent, ParentedTransformArrays[layerFilter.layer], ParentedIndices[layerFilter.layer] );
                         }
                     }
+                }
+            }
+            foreach ( ComponentDestructionEvent<ObjectRendererComponent> componentDestructionEvent in this.componentDestructionEvents )
+            {
+                if ( world.IsEntityOfArchetype( componentDestructionEvent.entity, dynamicRenderableArchetype ) )
+                {
+                    int layer = renderFilters[componentDestructionEvent.entity].layer;
+                    RemoveRenderer( componentDestructionEvent.entity, componentDestructionEvent.component, DynamicTransformArrays[layer], DynamicEntityArrays[layer], DynamicIndices[layer] );
+                }
+                else if ( world.IsEntityOfArchetype( componentDestructionEvent.entity, staticRenderableArchetype ) )
+                {
+                    int layer = renderFilters[componentDestructionEvent.entity].layer;
+                    RemoveRenderer( componentDestructionEvent.entity, componentDestructionEvent.component, StaticTransformArrays[layer], StaticEntityArrays[layer], StaticIndices[layer] );
+                }
+                else if ( world.IsEntityOfArchetype( componentDestructionEvent.entity, parentedRenderableArchetype ) )
+                {
+                    int layer = renderFilters[componentDestructionEvent.entity].layer;
+                    RemoveRenderer( componentDestructionEvent.entity, componentDestructionEvent.component, ParentedTransformArrays[layer], ParentedEntityArrays[layer], ParentedIndices[layer] );
                 }
             }
             foreach (ComponentCreationEvent<ObjectRendererComponent> creationEvent in this.creationEvents)
@@ -453,9 +473,14 @@ namespace VodeoECS.Standard
         private void RemoveRenderer ( Entity toRemove, TransformAccessArray transformArrays, NativeList<Entity> entityArrays, Dictionary<Entity, ushort> indices )
         {
             ObjectRendererComponent renderer = renderers[toRemove].Value;
+            RemoveRenderer(toRemove, renderer, transformArrays, entityArrays, indices);
+        }
+        
+        private void RemoveRenderer ( Entity toRemove, ObjectRendererComponent rendererToRemove, TransformAccessArray transformArrays, NativeList<Entity> entityArrays, Dictionary<Entity, ushort> indices )
+        {
             ushort index = indices[toRemove];
 
-            prefabPoolRegistry[renderer.objectType].Despawn( transformArrays[index].gameObject );
+            prefabPoolRegistry[rendererToRemove.objectType].Despawn( transformArrays[index].gameObject );
 
             Entity swapEntity = entityArrays[entityArrays.Length - 1];
             indices[swapEntity] = index;
